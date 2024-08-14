@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PickupSystem : MonoBehaviour
@@ -35,8 +36,20 @@ public class PickupSystem : MonoBehaviour
             {
                 PickupObject(hitCollider.gameObject);
                 break;
+            } else if (hitCollider.CompareTag("Spawner"))
+            {
+                spawnObject food = hitCollider.gameObject.GetComponent<spawnObject>();
+                SpawnPickupObject(food.foodPrefab);
+
             }
         }
+    }
+
+    private void SpawnPickupObject(GameObject obj) {
+        GameObject newPickup = Instantiate(obj, holdPoint.position, Quaternion.identity, holdPoint);
+        heldObject = newPickup;
+        heldObject.GetComponent<Rigidbody>().isKinematic = true;
+        isHolding = true;
     }
 
     private void PickupObject(GameObject obj)
