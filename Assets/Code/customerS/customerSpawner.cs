@@ -1,18 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class customerSpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float spawnRate;
+    public GameObject prefabCustomer;
+    CustomerLines customerLines;
+    public GameObject lines;
+    
 
-    // Update is called once per frame
-    void Update()
-    {
+    private void Start() {
+        lines = GameObject.FindWithTag("Lines");
+        customerLines = lines.GetComponent<CustomerLines>();
+        if(this.gameObject != null) {
+            StartCoroutine(SpawnCustomer());
+        }
+    }
+   
+
+    IEnumerator SpawnCustomer() {
+        while(true) {
+        
+           GameObject customer = Instantiate(prefabCustomer, transform.position, transform.rotation);
+           NavMeshAgent agent = customer.GetComponent<NavMeshAgent>();
+           agent.SetDestination(customerLines.calculateOffset(customer));
+           yield return new WaitForSeconds(spawnRate); 
+        }
         
     }
 }
