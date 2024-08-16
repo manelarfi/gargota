@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -26,7 +25,7 @@ public class PickupSystem : MonoBehaviour
     }
 
     private void TryPickupObject() {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 2f); // Adjust radius as needed
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 2f);
         foreach (var hitCollider in hitColliders) {
             if (hitCollider.CompareTag("Pickupable")) {
                 PickupObject(hitCollider.gameObject);
@@ -42,8 +41,8 @@ public class PickupSystem : MonoBehaviour
     }
 
     private void TryDropObject() {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 2f); // Adjust radius as needed
-        foreach (var hitCollider in hitColliders) { 
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 2f);
+        foreach (var hitCollider in hitColliders) {
             if (hitCollider.transform.TryGetComponent(out Interactable interactObj)) {
                 interactObj.Interact();
                 Interacted = true;
@@ -53,7 +52,7 @@ public class PickupSystem : MonoBehaviour
         if (!Interacted) {
             DropObject();
         } else {
-            Interacted = false;  // Reset Interacted for future interactions
+            Interacted = false;
         }
     }
 
@@ -67,17 +66,22 @@ public class PickupSystem : MonoBehaviour
     }
 
     public void PickupObject(GameObject obj) {
+        // Access the PickupData from the object
+        PickupData data = obj.GetComponent<dataScript>().data;
+
         heldObject = obj;
         heldObject.transform.SetParent(holdPoint);
-        heldObject.transform.position = holdPoint.position; // Adjust position as needed
-        heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics interactions
+        heldObject.transform.localPosition = data.positionInHand;
+        heldObject.transform.localRotation = Quaternion.Euler(data.rotationInHand);
+        heldObject.transform.localScale = data.scaleInHand;
+        heldObject.GetComponent<Rigidbody>().isKinematic = true;
         isHolding = true;
     }
 
     public void DropObject() {
         if (heldObject != null) {
             heldObject.transform.SetParent(null);
-            heldObject.GetComponent<Rigidbody>().isKinematic = false; // Enable physics interactions
+            heldObject.GetComponent<Rigidbody>().isKinematic = false;
             heldObject = null;
             isHolding = false;
         }

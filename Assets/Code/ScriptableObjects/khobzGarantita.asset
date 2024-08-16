@@ -10,10 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 454a0ab4b03d27d48842f2c57219d518, type: 3}
-  m_Name: sniwa
+  m_Name: khobzGarantita
   m_EditorClassIdentifier: 
-  itemName: 
-  PosInHand: {x: 0, y: 0, z: 0}
-  RotInHand: {x: 0, y: 0, z: 0}
-  scalInHand: {x: 0, y: 0, z: 0}
-  prefab: {fileID: 0}
+  scaleInHand: {x: 0.1, y: 0.1, z: 0.1}
+  positionInHand: {x: -0.4, y: 0, z: -0.3}
+  rotationInHand: {x: 90, y: 0, z: 0}
