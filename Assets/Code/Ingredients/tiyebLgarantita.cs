@@ -23,6 +23,7 @@ public class TiyebLgarantita : MonoBehaviour, Interactable
         if (hands.transform.childCount > 0 && hands.transform.GetChild(0).name == "sniwabGarantitaNC") {
             Debug.Log("Destroying object in hands");
             Destroy(hands.transform.GetChild(0).gameObject);
+            pickupSystem.isHolding = false;
             timer = Time.realtimeSinceStartup;
         } 
         else if (hands.transform.childCount == 0 && Time.realtimeSinceStartup - timer > cookingTime) {
