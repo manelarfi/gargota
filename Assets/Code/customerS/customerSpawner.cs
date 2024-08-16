@@ -26,7 +26,7 @@ public class customerSpawner : MonoBehaviour
            GameObject customer = Instantiate(prefabCustomer, transform.position, transform.rotation);
            NavMeshAgent agent = customer.GetComponent<NavMeshAgent>();
            agent.SetDestination(customerLines.calculateOffset(customer));
-           yield return new WaitForSeconds(spawnRate); 
+           yield return new WaitForSeconds(3); 
         }
         
     }

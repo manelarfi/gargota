@@ -9,20 +9,9 @@ public class CustomerLines : MonoBehaviour
     public List<GameObject> line1 = new List<GameObject>();
     public List<GameObject> line2 = new List<GameObject>();
     public List<GameObject> line3 = new List<GameObject>();
-    public List<GameObject> line4 = new List<GameObject>();
 
-    public Transform[] customerLines = new Transform[4];
+    public Transform[] customerLines ;
     int minIndex;
-
-    private void Start() {
-        int i = 0;
-        foreach(Transform point in GameManager.Instance.spawnPoints) {
-            customerLines[i] = point;
-            i++;
-        }
-    }
-
-    // Adds a customer to the line with the fewest customers
     public List<GameObject> AddCustomerToLine(GameObject customer) {
         List<GameObject> updatedLine = null;
         minIndex = FindMin();
@@ -40,10 +29,6 @@ public class CustomerLines : MonoBehaviour
                 line3.Add(customer);
                 updatedLine = line3;
                 break;
-            case 3:
-                line4.Add(customer);
-                updatedLine = line4;
-                break;
             default:
                 Debug.LogError("Invalid line index.");
                 break;
@@ -55,8 +40,7 @@ public class CustomerLines : MonoBehaviour
         List<int> lineCounts = new List<int> {
             line1.Count,
             line2.Count,
-            line3.Count,
-            line4.Count
+            line3.Count
         };
 
         // Find the minimum count and return its index
@@ -67,8 +51,7 @@ public class CustomerLines : MonoBehaviour
     public Vector3 calculateOffset(GameObject customer) {
         List<GameObject> UpdatedLine = AddCustomerToLine(customer);
         int nbCustomers = UpdatedLine.Count();
-        Vector3 offset = new Vector3(GameManager.Instance.spawnPoints[minIndex].transform.position.x - customerWidth * nbCustomers , GameManager.Instance.spawnPoints[minIndex].transform.position.y, GameManager.Instance.spawnPoints[minIndex].transform.position.z);
-        Debug.Log(offset);
+        Vector3 offset = new Vector3(customerLines[minIndex].transform.position.x + customerWidth * nbCustomers , customerLines[minIndex].transform.position.y, customerLines[minIndex].transform.position.z);
         return offset;
     }
     

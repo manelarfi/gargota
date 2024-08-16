@@ -1,11 +1,14 @@
+using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PickupSystem : MonoBehaviour
 {
     private Transform holdPoint; 
     private GameObject heldObject; 
-    private bool isHolding = false; 
+    public bool isHolding = false; 
+    private bool Interacted = false;
 
     private void Start() {
         GameObject hands = GameObject.FindWithTag("hands");
@@ -38,21 +41,24 @@ public class PickupSystem : MonoBehaviour
                 break;
             } else if (hitCollider.CompareTag("Spawner"))
             {
-                spawnObject food = hitCollider.gameObject.GetComponent<spawnObject>();
-                SpawnPickupObject(food.foodPrefab);
+                spawnObject objectt = hitCollider.gameObject.GetComponent<spawnObject>();
+                SpawnPickupObject(objectt.Prefab, objectt.Scale, objectt.objName);
 
             }
         }
     }
 
-    private void SpawnPickupObject(GameObject obj) {
+    public void SpawnPickupObject(GameObject obj, Vector3 scale, String ObjName) {
         GameObject newPickup = Instantiate(obj, holdPoint.position, Quaternion.identity, holdPoint);
+        newPickup.transform.localScale = scale;
+        newPickup.transform.name = ObjName;
+        newPickup.transform.position = holdPoint.position;
         heldObject = newPickup;
         heldObject.GetComponent<Rigidbody>().isKinematic = true;
         isHolding = true;
     }
 
-    private void PickupObject(GameObject obj)
+    public void PickupObject(GameObject obj)
     {
         heldObject = obj;
         heldObject.transform.SetParent(holdPoint);
@@ -63,9 +69,22 @@ public class PickupSystem : MonoBehaviour
 
     private void DropObject()
     {
-        heldObject.transform.SetParent(null);
-        heldObject.GetComponent<Rigidbody>().isKinematic = false; // Enable physics interactions
-        heldObject = null;
-        isHolding = false;
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 2f);
+        foreach (var hitCollider in hitColliders) {
+            if(hitCollider.transform.TryGetComponent(out Interactable InteractObj)) {
+                InteractObj.Interact();
+                Interacted = true;
+                Debug.Log("Interacted");
+            }
+        }
+        if (Interacted == false) {
+            heldObject.transform.SetParent(null);
+            heldObject.GetComponent<Rigidbody>().isKinematic = false; // Enable physics interactions
+            heldObject = null;
+            isHolding = false; 
+        } else {
+            Interacted = false;
+        }
+        
     }
 }

@@ -9,6 +9,8 @@ TagManager:
   - Pickupable
   - Spawner
   - Customer
+  - Lines
+  - cookingStep
   layers:
   - Default
   - TransparentFX
