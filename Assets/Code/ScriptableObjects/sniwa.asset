@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 454a0ab4b03d27d48842f2c57219d518, type: 3}
-  m_Name: khobz
+  m_Name: sniwa
   m_EditorClassIdentifier: 
-  scaleInHand: {x: 0.04, y: 0.07, z: 0.14}
-  positionInHand: {x: 0.1, y: 0, z: 0}
+  scaleInHand: {x: 2, y: 2, z: 2}
+  positionInHand: {x: 0, y: 0, z: 0}
   rotationInHand: {x: 0, y: 0, z: 0}

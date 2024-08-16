@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4735546861088676296}
   - component: {fileID: 6737055119505191047}
   - component: {fileID: 7811240151776230477}
+  - component: {fileID: 5147271718196537598}
   m_Layer: 0
   m_Name: sniwabGarantita
   m_TagString: Untagged
@@ -150,8 +151,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Scale: {x: 0.3, y: 0.4, z: 0.5}
-  khobzGarantita: {fileID: 2340413778023434134, guid: 165b1c4b0958c9d49a1095e44c2d1609, type: 3}
+  khobzGarantita: {fileID: 661349082854256926, guid: 4cbb18d2253279b49bff0e610ac46229, type: 3}
   servings: 1
+--- !u!114 &5147271718196537598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189614125337303906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7378fc20020807045be9ef14c3c14efd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 4f496682ade761647b109a0245eb633b, type: 2}
 --- !u!1 &5709075282600936398
 GameObject:
   m_ObjectHideFlags: 0

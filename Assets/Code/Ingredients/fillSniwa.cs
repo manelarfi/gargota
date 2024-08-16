@@ -5,7 +5,6 @@ using UnityEngine;
 public class fillSniwa : MonoBehaviour, Interactable
 {
     GameObject hands;
-    public Vector3 Scale;
     PickupSystem pickupSystem;
     public GameObject sniwaWithGarantitaNC;
     //NC stands for not cooked
@@ -17,7 +16,7 @@ public class fillSniwa : MonoBehaviour, Interactable
         if(hands.transform.GetChild(0).name == "sniwa") 
         {
             Destroy(hands.transform.GetChild (0).gameObject);
-            pickupSystem.SpawnPickupObject(sniwaWithGarantitaNC, Scale, "sniwabGarantitaNC");
+            pickupSystem.SpawnPickupObject(sniwaWithGarantitaNC, "sniwabGarantitaNC");
         }
     }
 

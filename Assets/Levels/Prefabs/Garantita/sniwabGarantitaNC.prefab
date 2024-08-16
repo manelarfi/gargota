@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1429242746561032164}
   - component: {fileID: 1909542512208325633}
   - component: {fileID: 955162039790426451}
+  - component: {fileID: 3638543776196173731}
   m_Layer: 0
   m_Name: sniwabGarantitaNC
   m_TagString: Pickupable
@@ -136,6 +137,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.20000003, y: 0.03194458, z: 0.26}
   m_Center: {x: -0.018125474, y: 0.0013432703, z: 0.00008670986}
+--- !u!114 &3638543776196173731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995998481023397548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7378fc20020807045be9ef14c3c14efd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 4f496682ade761647b109a0245eb633b, type: 2}
 --- !u!1 &2218534524592863641
 GameObject:
   m_ObjectHideFlags: 0

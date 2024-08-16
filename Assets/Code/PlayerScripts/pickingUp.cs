@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using UnityEditor;
+using System;
 using UnityEngine;
 
 public class PickupSystem : MonoBehaviour
@@ -32,7 +31,7 @@ public class PickupSystem : MonoBehaviour
                 break;
             } else if (hitCollider.CompareTag("Spawner")) {
                 spawnObject objectt = hitCollider.gameObject.GetComponent<spawnObject>();
-                SpawnPickupObject(objectt.Prefab, objectt.Scale, objectt.objName);
+                SpawnPickupObject(objectt.Prefab, objectt.objName);
             } else if (hitCollider.transform.TryGetComponent(out Interactable interactObj)) {
                 interactObj.Interact();
                 Debug.Log("Interacted");
@@ -56,9 +55,15 @@ public class PickupSystem : MonoBehaviour
         }
     }
 
-    public void SpawnPickupObject(GameObject obj, Vector3 scale, string ObjName) {
+    public void SpawnPickupObject(GameObject obj, string ObjName) {
+        PickupData data = obj.GetComponent<dataScript>().data;
         GameObject newPickup = Instantiate(obj, holdPoint.position, Quaternion.identity, holdPoint);
-        newPickup.transform.localScale = scale;
+        
+        // Apply the data from PickupData
+        newPickup.transform.localPosition = data.positionInHand;
+        newPickup.transform.localRotation = Quaternion.Euler(data.rotationInHand);
+        newPickup.transform.localScale = data.scaleInHand;
+        
         newPickup.name = ObjName;
         heldObject = newPickup;
         heldObject.GetComponent<Rigidbody>().isKinematic = true;

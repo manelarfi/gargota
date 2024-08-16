@@ -24,7 +24,7 @@ public class makeSandwich : MonoBehaviour, Interactable
                 Debug.Log("rahou ghalet");
                 if(i < servings) {
                     Destroy(hands.transform.GetChild(0).gameObject);
-                    pickupSystem.SpawnPickupObject(khobzGarantita, Scale, "khobzGarantita");
+                    pickupSystem.SpawnPickupObject(khobzGarantita,"khobzGarantita");
                     i++;
                 } else {
                     Destroy(transform.GetChild (0).gameObject);

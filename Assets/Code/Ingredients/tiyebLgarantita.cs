@@ -29,7 +29,7 @@ public class TiyebLgarantita : MonoBehaviour, Interactable
         else if (hands.transform.childCount == 0 && Time.realtimeSinceStartup - timer > cookingTime) {
             Debug.Log("Spawning cooked garantita");
             timer = Time.realtimeSinceStartup;
-            pickupSystem.SpawnPickupObject(garantitaTayba, scale, "sniwabGrantita");
+            pickupSystem.SpawnPickupObject(garantitaTayba,"sniwabGrantita");
         }
     }
 }
