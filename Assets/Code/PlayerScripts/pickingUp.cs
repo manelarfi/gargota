@@ -1,5 +1,4 @@
 using System;
-using System.Reflection.Emit;
 using UnityEngine;
 
 public class PickupSystem : MonoBehaviour
@@ -19,7 +18,6 @@ public class PickupSystem : MonoBehaviour
             if (isHolding) {
                 TryDropObject();
             } else {
-                
                 TryPickupObject();
             }
         }

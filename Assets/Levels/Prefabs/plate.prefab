@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 3099517793286361709}
   - component: {fileID: 1282978351390954742}
   - component: {fileID: 649698175522969381}
-  - component: {fileID: 2142046659519284662}
   m_Layer: 0
   m_Name: plate
   m_TagString: Pickupable
@@ -136,16 +135,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.95000005, y: 0.10000004, z: 0.95}
   m_Center: {x: -0.000000014901161, y: 0.049999997, z: 0}
---- !u!114 &2142046659519284662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3459696293645497272}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7378fc20020807045be9ef14c3c14efd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 57079f7f592efd547aad66ccfe0e4557, type: 2}
