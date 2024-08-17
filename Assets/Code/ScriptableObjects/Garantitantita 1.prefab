@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6881148467309498288}
   - component: {fileID: 6725892599355455258}
   - component: {fileID: 2834339320066873997}
-  - component: {fileID: 6767859387174064769}
+  - component: {fileID: 3791434258306876038}
   m_Layer: 0
   m_Name: Garantitantita 1
   m_TagString: Pickupable
@@ -87,7 +87,7 @@ CapsuleCollider:
   m_Height: 7.3383904
   m_Direction: 0
   m_Center: {x: 0.106950805, y: -0.8057277, z: 0.31525257}
---- !u!114 &6767859387174064769
+--- !u!114 &3791434258306876038
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,10 +96,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 661349082854256926}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7378fc20020807045be9ef14c3c14efd, type: 3}
+  m_Script: {fileID: 11500000, guid: ed2196d6469229e449ad5100959db973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 86a3bdbeff04c4c4aad5ed8729c2c6b0, type: 2}
+  order: 0
 --- !u!1 &2609847202385491712
 GameObject:
   m_ObjectHideFlags: 0

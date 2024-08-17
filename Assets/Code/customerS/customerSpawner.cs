@@ -14,6 +14,7 @@ public class customerSpawner : MonoBehaviour
     private void Start() {
         lines = GameObject.FindWithTag("Lines");
         customerLines = lines.GetComponent<CustomerLines>();
+
         if(this.gameObject != null) {
             StartCoroutine(SpawnCustomer());
         }
@@ -22,11 +23,10 @@ public class customerSpawner : MonoBehaviour
 
     IEnumerator SpawnCustomer() {
         while(true) {
-        
            GameObject customer = Instantiate(prefabCustomer, transform.position, transform.rotation);
            NavMeshAgent agent = customer.GetComponent<NavMeshAgent>();
-           agent.SetDestination(customerLines.calculateOffset(customer));
-           yield return new WaitForSeconds(3); 
+           agent.SetDestination(customerLines.CalculateOffset(customer));
+           yield return new WaitForSeconds(spawnRate); 
         }
         
     }

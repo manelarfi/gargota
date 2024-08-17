@@ -14,6 +14,7 @@ public class CustomerController : MonoBehaviour
         lines = GameObject.FindWithTag("Lines");
         customerLines = lines.GetComponent<CustomerLines>();
         if(this.gameObject != null) {
+
             agent.SetDestination(Vector3.zero);
         }
     }
