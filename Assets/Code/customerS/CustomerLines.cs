@@ -11,25 +11,25 @@ public class CustomerLines : MonoBehaviour
     public Queue<GameObject> line3 = new Queue<GameObject>();
 
     public Transform[] customerLines;
-
     int minIndex;
 
-    public Queue<GameObject> whichLine(int index) {
-        switch(index) {
+    public Queue<GameObject> whichLine(int index)
+    {
+        switch(index)
+        {
             case 1:
                 return line1;
-
             case 2:
                 return line2;
-
             case 3:
                 return line3;
-
             default:
                 return null;
         }
     }
-    public Queue<GameObject> AddCustomerToLine(GameObject customer) {
+
+    public Queue<GameObject> AddCustomerToLine(GameObject customer)
+    {
         Queue<GameObject> updatedLine = null;
         minIndex = FindMin();
         switch (minIndex)
@@ -53,7 +53,8 @@ public class CustomerLines : MonoBehaviour
         return updatedLine;
     }
 
-    public int FindMin() {
+    public int FindMin()
+    {
         List<int> lineCounts = new List<int> {
             line1.Count,
             line2.Count,
@@ -65,10 +66,19 @@ public class CustomerLines : MonoBehaviour
         return lineCounts.IndexOf(minCount);
     }
 
-    public Vector3 CalculateOffset(GameObject customer) {
+    public Vector3 CalculateOffset(GameObject customer)
+    {
         Queue<GameObject> updatedLine = AddCustomerToLine(customer);
-        int nbCustomers = updatedLine.Count;
+        int nbCustomers = updatedLine.Count - 1; // Subtract 1 since the customer is already in the queue
         Vector3 offset = new Vector3(customerLines[minIndex].transform.position.x + customerWidth * nbCustomers, customerLines[minIndex].transform.position.y, customerLines[minIndex].transform.position.z);
+        return offset;
+    }
+
+    public Vector3 updateOffset(Queue<GameObject> line, Transform currentTransform)
+    {
+        int nbCustomers = line.Count;
+        Vector3 lineStartPosition = currentTransform.position;
+        Vector3 offset = new Vector3(lineStartPosition.x - customerWidth * nbCustomers, lineStartPosition.y, lineStartPosition.z);
         return offset;
     }
 }

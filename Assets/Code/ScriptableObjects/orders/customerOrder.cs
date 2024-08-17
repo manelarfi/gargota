@@ -6,7 +6,7 @@ using UnityEngine;
 public enum Order
 {
     Garantita,
-    empty
+    pizza
 }
 
 public class CustomerOrder : MonoBehaviour

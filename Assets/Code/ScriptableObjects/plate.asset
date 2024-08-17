@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 454a0ab4b03d27d48842f2c57219d518, type: 3}
   m_Name: plate
   m_EditorClassIdentifier: 
-  scaleInHand: {x: 1, y: 1, z: 1}
-  positionInHand: {x: 0, y: 0, z: 0}
+  scaleInHand: {x: 0.4, y: 0.4, z: 0.4}
+  positionInHand: {x: 0, y: 0.5, z: 0}
   rotationInHand: {x: 0, y: 0, z: 0}

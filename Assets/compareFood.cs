@@ -1,20 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class CompareFood : MonoBehaviour
 {
     public int lineNB;
     public Order CustomerOrder;
-    public Order PreparedOrder;
-
     public GameObject waitingLines;
+    public GameObject hands;
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Pickupable")) {
-            Debug.Log("hh");
-        if (other.gameObject.GetComponent<preparedOrder>())
+        // Check if the colliding object is "Pickupable" and has a "preparedOrder" component
+        if (other.gameObject.CompareTag("Pickupable") && other.gameObject.GetComponent<preparedOrder>())
         {
             Debug.Log("Entered trigger with a prepared order");
 
@@ -25,21 +24,33 @@ public class CompareFood : MonoBehaviour
             Queue<GameObject> lineQueue = customerLines.whichLine(lineNB);
             if (lineQueue != null && lineQueue.Count > 0)
             {
-                GameObject customer = lineQueue.Dequeue();
-                Debug.Log("Customer found");
+                GameObject customer = lineQueue.Peek(); // Get the customer at the front of the queue
 
                 // Get the CustomerOrder script from the customer
                 CustomerOrder customerOrderScript = customer.GetComponent<CustomerOrder>();
                 if (customerOrderScript != null)
                 {
-                    CustomerOrder = customerOrderScript.randomOrder;
+                    Order customerOrder = customerOrderScript.randomOrder;
 
                     // Compare orders
-                    if (PreparedOrder == CustomerOrder)
+                    Order preparedOrderScript = other.GetComponent<preparedOrder>().order;
+                    if (preparedOrderScript == customerOrder)
                     {
                         // Destroy both the customer and the prepared order
                         Destroy(other.gameObject);
                         Destroy(customer);
+                        lineQueue.Dequeue(); // Remove the customer from the queue
+
+                        // Update the isHolding status in the PickupSystem
+                        PickupSystem pickupSystem = hands.GetComponent<PickupSystem>();
+                        pickupSystem.isHolding = false;
+
+                        // Update positions of remaining customers in the line
+                        foreach (var remainingCustomer in lineQueue)
+                        {
+                            NavMeshAgent agent = remainingCustomer.GetComponent<NavMeshAgent>();
+                            agent.SetDestination(customerLines.updateOffset(lineQueue, remainingCustomer.transform));
+                        }
                     }
                 }
                 else
@@ -52,6 +63,5 @@ public class CompareFood : MonoBehaviour
                 Debug.LogWarning("Line queue is empty or invalid.");
             }
         }
-    }
     }
 }

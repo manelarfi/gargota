@@ -150,9 +150,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecb5d1cd87bc59442937f03248e2f5a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Scale: {x: 0.3, y: 0.4, z: 0.5}
   khobzGarantita: {fileID: 661349082854256926, guid: 4cbb18d2253279b49bff0e610ac46229, type: 3}
-  servings: 1
+  pizzaPlate: {fileID: 6809343344193803272, guid: 6cf0b7ac19b56304e9a3fe986d8fc8e2, type: 3}
+  servings: 2
 --- !u!114 &5147271718196537598
 MonoBehaviour:
   m_ObjectHideFlags: 0

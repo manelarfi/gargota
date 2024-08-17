@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6725892599355455258}
   - component: {fileID: 2834339320066873997}
   - component: {fileID: 3791434258306876038}
+  - component: {fileID: 5024367898011277802}
   m_Layer: 0
   m_Name: Garantitantita 1
   m_TagString: Pickupable
@@ -100,6 +101,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   order: 0
+--- !u!114 &5024367898011277802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661349082854256926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7378fc20020807045be9ef14c3c14efd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 86a3bdbeff04c4c4aad5ed8729c2c6b0, type: 2}
 --- !u!1 &2609847202385491712
 GameObject:
   m_ObjectHideFlags: 0
