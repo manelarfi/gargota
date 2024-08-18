@@ -16,18 +16,15 @@ public class timerOven : MonoBehaviour
     public Color startcolor = Color.green;
     void Start()
     {
-        uiFill = GetComponent<Image>();
-        uiFill.enabled = false;
+        begin(duration);
     }
-    public void begin(int second)
+    private void begin(int second)
     {
         remainingDuration = second;
-        uiFill.enabled = true;
         StartCoroutine(updatetimer());
     }
     private IEnumerator updatetimer()
     {
-        
         while (remainingDuration >= 0)
         {
             uiFill.fillAmount = Mathf.InverseLerp(0, duration, remainingDuration);
@@ -56,8 +53,7 @@ public class timerOven : MonoBehaviour
     }
     private void onEnd()
     {
-        uiFill.enabled = false;
-        duration = 10;
+        timer.SetActive(false);
     }
 }
   

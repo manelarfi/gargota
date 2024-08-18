@@ -33,10 +33,6 @@ public class healthManager : MonoBehaviour
         }
     }
 
-    public void looseHeart () {
-        health --;
-    }
-
     void UpdateHealthDisplay()
     {
         for (int i = 0; i < hats.Length; i++)

@@ -6,9 +6,9 @@ using UnityEngine.AI;
 public class CompareFood : MonoBehaviour
 {
     public int lineNB;
+    public Order CustomerOrder;
     public GameObject waitingLines;
     public GameObject hands;
-    public healthManager healthManager;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -36,19 +36,7 @@ public class CompareFood : MonoBehaviour
                     Order preparedOrderScript = other.GetComponent<preparedOrder>().order;
                     if (preparedOrderScript == customerOrder)
                     {
-                        // Update positions of remaining customers in the line
-                        foreach (var remainingCustomer in lineQueue)
-                        {
-                            NavMeshAgent agent = remainingCustomer.GetComponent<NavMeshAgent>();
-                            agent.SetDestination(customerLines.updateOffset(lineQueue, remainingCustomer.transform));
-                        }
-                    }
-                    else
-                    {
-                        // Orders don't match: player loses a heart
-                        healthManager.looseHeart();
-                    }
-                     // Orders match: destroy the prepared order and the customer
+                        // Destroy both the customer and the prepared order
                         Destroy(other.gameObject);
                         Destroy(customer);
                         lineQueue.Dequeue(); // Remove the customer from the queue
@@ -57,6 +45,13 @@ public class CompareFood : MonoBehaviour
                         PickupSystem pickupSystem = hands.GetComponent<PickupSystem>();
                         pickupSystem.isHolding = false;
 
+                        // Update positions of remaining customers in the line
+                        foreach (var remainingCustomer in lineQueue)
+                        {
+                            NavMeshAgent agent = remainingCustomer.GetComponent<NavMeshAgent>();
+                            agent.SetDestination(customerLines.updateOffset(lineQueue, remainingCustomer.transform));
+                        }
+                    }
                 }
                 else
                 {
