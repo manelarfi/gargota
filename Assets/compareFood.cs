@@ -5,6 +5,14 @@ using UnityEngine.AI;
 
 public class CompareFood : MonoBehaviour
 {
+    private AudioManager audioManager;
+
+    private void Start() 
+    {
+        // Find the GameObject with the tag "Audio"
+        GameObject audioObject = GameObject.FindWithTag("Audio"); 
+        audioManager = audioObject.GetComponent<AudioManager>();
+    }
     public scoreManager score;
     public int lineNB;
     public Order CustomerOrder;
@@ -44,11 +52,14 @@ public class CompareFood : MonoBehaviour
                             NavMeshAgent agent = remainingCustomer.GetComponent<NavMeshAgent>();
                             agent.SetDestination(customerLines.updateOffset(lineQueue, remainingCustomer.transform));
                         }
+                        audioManager.PlaySFX(audioManager.angryCustomer1);
                         score.scoreIncrease();
+                        
                         
                     }
                     else
                     {
+                        audioManager.PlaySFX(audioManager.angryCustomer);
                         // Orders don't match: player loses a heart
                         healthManager.looseHeart();
                     }

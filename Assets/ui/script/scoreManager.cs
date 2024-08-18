@@ -22,7 +22,6 @@ public class scoreManager : MonoBehaviour
     void UpdateScoreText()
     {
         scoretext.text = "Customers: " + Mathf.Round(scorecount);
-        Debug.Log("Score updated: " + scorecount);
     }
 
     public void scoreIncrease() {

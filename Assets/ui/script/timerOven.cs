@@ -23,11 +23,11 @@ public class timerOven : MonoBehaviour
         if (timerCoroutine != null)
         {
             StopCoroutine(timerCoroutine);
-            
         }
         duration = seconds;
         remainingDuration = seconds;
         timer.SetActive(true);
+        hasEnded = false; // Reset the hasEnded flag
         timerCoroutine = StartCoroutine(UpdateTimer());
     }
 
@@ -63,5 +63,6 @@ public class timerOven : MonoBehaviour
     private void OnEnd()
     {
         timer.SetActive(false);
+        hasEnded = true; // Update the hasEnded flag when the timer ends
     }
 }

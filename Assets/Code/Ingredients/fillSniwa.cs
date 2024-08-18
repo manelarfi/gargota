@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class fillSniwa : MonoBehaviour, Interactable
 {
+    private AudioManager audioManager; 
     GameObject hands;
     PickupSystem pickupSystem;
     public String name;
@@ -13,6 +14,9 @@ public class fillSniwa : MonoBehaviour, Interactable
 
     //NC stands for not cooked
     private void Start() {
+        // Find the GameObject with the tag "Audio"
+        GameObject audioObject = GameObject.FindWithTag("Audio"); 
+        audioManager = audioObject.GetComponent<AudioManager>();
         hands = GameObject.FindGameObjectWithTag("hands");
         pickupSystem = hands.GetComponent<PickupSystem>();
     }
@@ -21,7 +25,9 @@ public class fillSniwa : MonoBehaviour, Interactable
     {
         if (hands.transform.childCount > 0 && hands.transform.GetChild(0).name == condition){
             Destroy(hands.transform.GetChild(0).gameObject);
+            audioManager.PlaySFX(audioManager.addSauce);
             pickupSystem.SpawnPickupObject(sniwaWithGarantitaNC, name);
+
         }
     }
 

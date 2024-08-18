@@ -14,7 +14,7 @@ public class PickupSystem : MonoBehaviour
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.P)) {
+        if (Input.GetKeyDown(KeyCode.F)) {
             if (isHolding) {
                 TryDropObject();
             } else {

@@ -11,6 +11,7 @@ TagManager:
   - Customer
   - Lines
   - cookingStep
+  - Audio
   layers:
   - Default
   - TransparentFX
