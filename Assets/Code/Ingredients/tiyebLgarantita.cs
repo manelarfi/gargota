@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TiyebLgarantita : MonoBehaviour, Interactable
 {
@@ -11,7 +13,8 @@ public class TiyebLgarantita : MonoBehaviour, Interactable
     private float timer;
     private GameObject hands;
     private PickupSystem pickupSystem;
-    public float cookingTime;
+    public int cookingTime;
+    public timerOven timerOven;
     private String result;
 
     private void Start() {
@@ -31,6 +34,7 @@ public class TiyebLgarantita : MonoBehaviour, Interactable
             pickupSystem.isHolding = false;
             Destroy(hands.transform.GetChild(0).gameObject);
             timer = Time.realtimeSinceStartup;
+            timerOven.begin(cookingTime);
             
         } else if (hands.transform.childCount == 0 && Time.realtimeSinceStartup - timer > cookingTime) {
             timer = Time.realtimeSinceStartup;
