@@ -9,6 +9,7 @@ public class customerSpawner : MonoBehaviour
     public GameObject prefabCustomer;
     CustomerLines customerLines;
     public GameObject lines;
+    public Animator animator;
     
 
     private void Start() {

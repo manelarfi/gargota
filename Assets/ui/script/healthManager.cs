@@ -18,6 +18,9 @@ public class healthManager : MonoBehaviour
         previousHealth = health;
         losingScreen.SetActive(false); // Ensure the losing screen is hidden at the start
     }
+    public void looseHeart() {
+        health--;
+    }
 
     void Update()
     {

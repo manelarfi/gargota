@@ -25,6 +25,10 @@ public class scoreManager : MonoBehaviour
         Debug.Log("Score updated: " + scorecount);
     }
 
+    public void scoreIncrease() {
+        scorecount++;
+    }
+
     public int GetScore()
     {
          Debug.Log("Score retrieved: " + scorecount);

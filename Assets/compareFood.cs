@@ -5,10 +5,12 @@ using UnityEngine.AI;
 
 public class CompareFood : MonoBehaviour
 {
+    public scoreManager score;
     public int lineNB;
     public Order CustomerOrder;
     public GameObject waitingLines;
     public GameObject hands;
+    public healthManager healthManager;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -36,6 +38,21 @@ public class CompareFood : MonoBehaviour
                     Order preparedOrderScript = other.GetComponent<preparedOrder>().order;
                     if (preparedOrderScript == customerOrder)
                     {
+                        // Update positions of remaining customers in the line
+                        foreach (var remainingCustomer in lineQueue)
+                        {
+                            NavMeshAgent agent = remainingCustomer.GetComponent<NavMeshAgent>();
+                            agent.SetDestination(customerLines.updateOffset(lineQueue, remainingCustomer.transform));
+                        }
+                        score.scoreIncrease();
+                        
+                    }
+                    else
+                    {
+                        // Orders don't match: player loses a heart
+                        healthManager.looseHeart();
+                    }
+
                         // Destroy both the customer and the prepared order
                         Destroy(other.gameObject);
                         Destroy(customer);
@@ -63,5 +80,5 @@ public class CompareFood : MonoBehaviour
                 Debug.LogWarning("Line queue is empty or invalid.");
             }
         }
+
     }
-}

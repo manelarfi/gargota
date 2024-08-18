@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: khobzGarantita
   m_EditorClassIdentifier: 
   scaleInHand: {x: 0.05, y: 0.08, z: 0.09}
-  positionInHand: {x: 0.3, y: 0.3, z: 0}
+  positionInHand: {x: 0.2, y: 0.3, z: 0}
   rotationInHand: {x: 90, y: 90, z: 0}

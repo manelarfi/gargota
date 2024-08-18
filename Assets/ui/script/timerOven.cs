@@ -1,59 +1,67 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class timerOven : MonoBehaviour
 {
+    public bool hasEnded = false;
     [SerializeField] private Image uiFill;
     public int duration;
     private int remainingDuration;
     public GameObject timer;
 
-    public Color midcolor = Color.yellow;
-    public Color endcolor = Color.red;
-    public Color startcolor = Color.green;
-    void Start()
+    public Color startColor = Color.green;
+    public Color midColor = Color.yellow;
+    public Color endColor = Color.red;
+
+    private Coroutine timerCoroutine;
+
+    // This method starts the timer whenever it's called
+    public void StartTimer(int seconds)
     {
-        begin(duration);
+        if (timerCoroutine != null)
+        {
+            StopCoroutine(timerCoroutine);
+            
+        }
+        duration = seconds;
+        remainingDuration = seconds;
+        timer.SetActive(true);
+        timerCoroutine = StartCoroutine(UpdateTimer());
     }
-    private void begin(int second)
-    {
-        remainingDuration = second;
-        StartCoroutine(updatetimer());
-    }
-    private IEnumerator updatetimer()
+
+    private IEnumerator UpdateTimer()
     {
         while (remainingDuration >= 0)
         {
             uiFill.fillAmount = Mathf.InverseLerp(0, duration, remainingDuration);
-            Updatecolor();
+            UpdateColor();
             remainingDuration--;
             yield return new WaitForSeconds(1f);
         }
-        onEnd();
+        OnEnd();
     }
-    private void Updatecolor()
+
+    private void UpdateColor()
     {
         float progress = Mathf.InverseLerp(0, duration, remainingDuration);
-        if (progress < 1f && progress>0.5f)
+        if (progress > 0.5f)
         {
-            uiFill.color = startcolor;
+            uiFill.color = startColor;
         }
-        else if (progress > 0.25f && progress < 0.5f)
+        else if (progress > 0.25f)
         {
-            uiFill.color = midcolor;    
+            uiFill.color = midColor;
         }
-        else if(progress <0.25f)
+        else
         {
-         
-            uiFill.color = endcolor;
+            uiFill.color = endColor;
         }
     }
-    private void onEnd()
+
+    private void OnEnd()
     {
         timer.SetActive(false);
     }
 }
-  
